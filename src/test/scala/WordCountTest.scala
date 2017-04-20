@@ -10,12 +10,17 @@ import com.google.common.io.Files
 
 // Specs2
 import org.specs2.mutable.Specification
+import org.scalatest.FlatSpec
 
-class WordCountTest extends Specification {
+class WordCountTest extends FlatSpec  {
 
-  "A WordCount job" should {
-
-    "count words correctly" in {
+  "java" should "asdf" in {
+      val asdf="java"
+      val fda="java"
+      asdf==fda
+  }
+  
+  "A WordCount job" should "count words correctly" in {
 
       val tempDir = Files.createTempDir()
       val inputFile = new File(tempDir, "input").getAbsolutePath
@@ -26,9 +31,8 @@ class WordCountTest extends Specification {
 
       WordCount.execute()
 
-      val outputFile = new File(outputDir, "part-00000")
+      val outputFile = new File("output", "part-00000")
       val actual = Source.fromFile(outputFile).mkString
-      actual must_== "(java,2)\n(scala,2)\n"
-    }
+      actual === "(java,2)\n(scala,2)\n"
   }
 }
